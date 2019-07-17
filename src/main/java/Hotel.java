@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Hotel {
 
@@ -25,7 +26,7 @@ public class Hotel {
     }
 
     public void checkInBedroom(Guest guest, Bedroom bedroom) {
-        if(this.bedrooms.contains(bedroom)){
+        if(this.bedrooms.contains(bedroom) && bedroom.numberOfGuests() == 0){
             bedroom.addGuest(guest);
         }
     }
@@ -56,6 +57,17 @@ public class Hotel {
 
     public Booking bookRoom(Bedroom bedroom, int nightsBooked) {
         Booking newBooking = new Booking(bedroom, nightsBooked);
+        bedroom.markAsBooked();
         return newBooking;
+    }
+
+    public Collection emptyBedrooms() {
+        ArrayList<Bedroom> emptyRooms = new ArrayList<Bedroom>();
+        for (Bedroom bedroom : this.bedrooms){
+            if(!bedroom.isBooked()) {
+                emptyRooms.add(bedroom);
+            }
+        }
+        return emptyRooms;
     }
 }

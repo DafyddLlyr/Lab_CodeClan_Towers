@@ -3,6 +3,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class BedroomTest {
 
@@ -42,6 +43,24 @@ public class BedroomTest {
     @Test
     public void bedroomHasNightlyRate(){
         assertEquals(100, bedroom.getRate());
+    }
+
+    @Test
+    public void bedroomIsCreatedUnBooked() {
+        assertFalse(bedroom.isBooked());
+    }
+
+    @Test
+    public void bedroomCanBeMarkedAsBooked() {
+        bedroom.markAsBooked();
+        assertTrue(bedroom.isBooked());
+    }
+
+    @Test
+    public void bedroomCanBeMarkedAsUnbooked() {
+        bedroom.markAsBooked();
+        bedroom.markAsUnbooked();
+        assertFalse(bedroom.isBooked());
     }
 
     @Test

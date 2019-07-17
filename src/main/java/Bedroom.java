@@ -7,6 +7,7 @@ public class Bedroom {
     private String type;
     private ArrayList<Guest> guests;
     private int rate;
+    private Boolean booked;
 
     public Bedroom(String roomNumber, int capacity, String type, int rate) {
         this.roomNumber = roomNumber;
@@ -14,6 +15,7 @@ public class Bedroom {
         this.type = type;
         this.guests = new ArrayList<Guest>();
         this.rate = rate;
+        this.booked = false;
     }
 
     public String getRoomNumber() {
@@ -36,6 +38,10 @@ public class Bedroom {
         return rate;
     }
 
+    public Boolean isBooked() {
+        return this.booked;
+    }
+
     public int numberOfGuests() {
         return this.guests.size();
     }
@@ -52,5 +58,13 @@ public class Bedroom {
             this.guests.remove(guest);
             capacity += 1;
         }
+    }
+
+    public void markAsBooked() {
+        this.booked = true;
+    }
+
+    public void markAsUnbooked() {
+        this.booked = false;
     }
 }
