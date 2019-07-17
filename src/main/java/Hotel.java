@@ -38,7 +38,7 @@ public class Hotel {
     }
 
     public void checkInConference(Guest guest, ConferenceRoom conferenceRoom) {
-        if(this.conferenceRooms.contains(conferenceRoom)){
+        if(this.conferenceRooms.contains(conferenceRoom) && conferenceRoom.numberOfGuests() == 0){
             conferenceRoom.addGuest(guest);
         }
     }
@@ -70,4 +70,5 @@ public class Hotel {
         }
         return emptyRooms;
     }
+
 }

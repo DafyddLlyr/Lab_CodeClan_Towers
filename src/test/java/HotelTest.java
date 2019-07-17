@@ -19,6 +19,7 @@ public class HotelTest {
     private ArrayList<Bedroom> bedrooms;
     private ConferenceRoom conference1;
     private ArrayList<ConferenceRoom> conferenceRooms;
+    private ConferenceRoom conference2;
 
     @Before
     public void setup() {
@@ -33,6 +34,7 @@ public class HotelTest {
 
         conferenceRooms = new ArrayList<ConferenceRoom>();
         conference1 = new ConferenceRoom("Deluxe Suite", 10);
+        conference2 = new ConferenceRoom("Executive Suite", 10);
 
         hotel = new Hotel(bedrooms, conferenceRooms);
         hotel.addBedroom(bedroom1);
@@ -95,6 +97,14 @@ public class HotelTest {
     }
 
     @Test
+    public void hotelCanOnlyCheckGuestsIntoEmptyConferenceRooms() {
+        hotel.addConferenceRoom(conference1);
+        hotel.checkInConference(guest1, conference1);
+        hotel.checkInConference(guest2, conference1);
+        assertEquals(1, conference1.numberOfGuests());
+    }
+
+    @Test
     public void hotelCanCheckGuestsOutOfConferenceRooms(){
         hotel.addConferenceRoom(conference1);
         hotel.checkInConference(guest1, conference1);
@@ -126,4 +136,5 @@ public class HotelTest {
         assertTrue(hotel.emptyBedrooms().contains(bedroom3));
         assertFalse(hotel.emptyBedrooms().contains(bedroom1));
     }
+
 }

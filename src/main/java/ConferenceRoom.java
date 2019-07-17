@@ -41,4 +41,5 @@ public class ConferenceRoom {
             capacity += 1;
         }
     }
+
 }
